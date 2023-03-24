@@ -15,7 +15,7 @@ source:
   # * patched project is:  https://github.com/loriab/libefp/archive/14f8594.tar.gz  # v1.5.0 + 13 (above plus some cmake patches for windows)
 
 build:
-  number: 0
+  number: 1
   binary_relocation: true
 
 requirements:
