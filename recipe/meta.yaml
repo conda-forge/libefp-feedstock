@@ -129,8 +129,8 @@ outputs:
         - ldd -v $SP_DIR/pylibefp/core*.so                        # [linux]
         - otool -L $SP_DIR/pylibefp/core*.so                      # [osx]
         # Actually test
-        - python test_pylibefp.py
-        - python -c "import pylibefp; assert pylibefp.test(extras=['--color', 'yes']) == 0"
+        - python test_pylibefp.py                                 # [build_platform == target_platform]
+        - python -c "import pylibefp; assert pylibefp.test(extras=['--color', 'yes']) == 0"  # [build_platform == target_platform]
           # equivalent to above: pytest -v -rws --color yes $SP_DIR/pylibefp  # [unix]
           # equivalent to above: pytest -v -rws --color yes %SP_DIR%\\pylibefp  # [win]
     about:
