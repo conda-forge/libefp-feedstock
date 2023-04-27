@@ -1,7 +1,7 @@
 {% set name = "libefp" %}
 {% set libefp_version = "1.5.0" %}
 {% set version = "0.6.2" %}
-{% set sha256 = "6f9c1e34c2540ec41d0d6934e7861b504c00420e897d918901c4310fa0e55765" %}
+{% set sha256 = "734925b58a3021c4993a545dafa01c3491ebd71719d7156d1ab8f4f1c3fff212" %}
 
 package:
   name: {{ name|lower }}-split
@@ -9,18 +9,21 @@ package:
 
 source:
   # url: https://github.com/loriab/pylibefp/archive/v{{ version }}.tar.gz
-  url: https://github.com/loriab/pylibefp/archive/e44cc32.tar.gz  # v0.6.2 + 3
+  url: https://github.com/loriab/pylibefp/archive/cc85375.tar.gz  # v0.6.2 + 4
   sha256: {{ sha256 }}
   # note: above accesses (with checksum) a patch of the upstream project libefp
   # * upstream project is: https://github.com/libefp2/libefp/archive/15cd7ce.tar.gz  # v1.5.0 + 10 (docs and a cmake lapack patch)
   # * patched project is:  https://github.com/loriab/libefp/archive/14f8594.tar.gz  # v1.5.0 + 13 (above plus some cmake patches for windows)
 
 build:
-  number: 1
+  number: 2
   binary_relocation: true
 
 requirements:
   build:
+    - python                                 # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+    - pybind11                               # [build_platform != target_platform]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - cmake
@@ -92,6 +95,9 @@ outputs:
         - {{ compiler('cxx') }}
         - cmake
         - ninja
+        - python                                 # [build_platform != target_platform]
+        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+        - pybind11                               # [build_platform != target_platform]
       host:
         - {{ pin_subpackage('libefp', exact=True) }}
         - python
@@ -126,8 +132,8 @@ outputs:
         - ldd -v $SP_DIR/pylibefp/core*.so                        # [linux]
         - otool -L $SP_DIR/pylibefp/core*.so                      # [osx]
         # Actually test
-        - python test_pylibefp.py
-        - python -c "import pylibefp; assert pylibefp.test(extras=['--color', 'yes']) == 0"
+        - python test_pylibefp.py                                 # [build_platform == target_platform]
+        - python -c "import pylibefp; assert pylibefp.test(extras=['--color', 'yes']) == 0"  # [build_platform == target_platform]
           # equivalent to above: pytest -v -rws --color yes $SP_DIR/pylibefp  # [unix]
           # equivalent to above: pytest -v -rws --color yes %SP_DIR%\\pylibefp  # [win]
     about:
