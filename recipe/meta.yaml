@@ -132,7 +132,7 @@ outputs:
         - test -f $SP_DIR/pylibefp/core*.so                       # [unix]
         - if not exist %SP_DIR%\\pylibefp\\core*.pyd exit 1       # [win]
         # Inspect linkage
-        - ldd -v $SP_DIR/pylibefp/core*.so                        # [linux]
+        - ldd -v $SP_DIR/pylibefp/core*.so                        # [linux and build_platform == target_platform]
         - otool -L $SP_DIR/pylibefp/core*.so                      # [osx]
         # Actually test
         - python test_pylibefp.py                                 # [build_platform == target_platform]
