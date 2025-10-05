@@ -8,7 +8,7 @@ cmake %CMAKE_ARGS% -G"Ninja" ^
       -DCMAKE_INSTALL_INCLUDEDIR="Library/include" ^
       -DCMAKE_INSTALL_BINDIR="Library/bin" ^
       -DCMAKE_INSTALL_DATADIR="Library/share" ^
-      -DCMAKE_PREFIX_PATH="%LIBRARY_PREFIX%" ^
+      -DCMAKE_PREFIX_PATH="%PREFIX%/Library" ^
       -DPYLIBEFP_CMAKECONFIG_INSTALL_DIR="Library/share/cmake/pylibefp" ^
       -DLIBEFP_CMAKECONFIG_INSTALL_DIR="Library/share/cmake/libefp" ^
       -DCMAKE_C_FLAGS="/wd4018 /wd4101 /wd4996 /EHsc %CFLAGS%" ^
@@ -26,7 +26,7 @@ cmake %CMAKE_ARGS% -G"Ninja" ^
       -DBUILD_TESTING=OFF ^
       -DFRAGLIB_UNDERSCORE_L=OFF ^
       -DFRAGLIB_DEEP=OFF ^
-      -DCMAKE_POLICY_VERSION_MINIMUM=3.5 ^
+      -DCMAKE_POLICY_VERSION_MINIMUM=3.10 ^
       -DINSTALL_DEVEL_HEADERS=ON
 
       ::-DLAPACK_LIBRARIES="%PREFIX%/Library/lib/mkl_rt.lib"
