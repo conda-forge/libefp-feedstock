@@ -8,7 +8,7 @@ cmake %CMAKE_ARGS% -G"Ninja" ^
       -DCMAKE_INSTALL_INCLUDEDIR="Library/include" ^
       -DCMAKE_INSTALL_BINDIR="Library/bin" ^
       -DCMAKE_INSTALL_DATADIR="Library/share" ^
-      -DCMAKE_PREFIX_PATH="%PREFIX%/Library" ^
+      -DCMAKE_PREFIX_PATH="%PREFIX%\\Library" ^
       -DPYLIBEFP_CMAKECONFIG_INSTALL_DIR="Library/share/cmake/pylibefp" ^
       -DLIBEFP_CMAKECONFIG_INSTALL_DIR="Library/share/cmake/libefp" ^
       -DCMAKE_C_FLAGS="/wd4018 /wd4101 /wd4996 /EHsc %CFLAGS%" ^
