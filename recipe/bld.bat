@@ -1,21 +1,19 @@
 
-:: cmake %CMAKE_ARGS% -G"Ninja"
-
-cmake -G"Ninja" ^
+cmake %CMAKE_ARGS% -G"Ninja" ^
       -S%SRC_DIR% ^
       -Bbuild ^
       -DCMAKE_BUILD_TYPE=Release ^
       -DCMAKE_INSTALL_PREFIX="%PREFIX%" ^
-      -DCMAKE_INSTALL_LIBDIR="Library/lib" ^
-      -DCMAKE_INSTALL_INCLUDEDIR="Library/include" ^
-      -DCMAKE_INSTALL_BINDIR="Library/bin" ^
-      -DCMAKE_INSTALL_DATADIR="Library/share" ^
-      -DCMAKE_PREFIX_PATH="%PREFIX%/Library" ^
-      -DPYLIBEFP_CMAKECONFIG_INSTALL_DIR="Library/share/cmake/pylibefp" ^
-      -DLIBEFP_CMAKECONFIG_INSTALL_DIR="Library/share/cmake/libefp" ^
+      -DCMAKE_INSTALL_LIBDIR="Library\lib" ^
+      -DCMAKE_INSTALL_INCLUDEDIR="Library\include" ^
+      -DCMAKE_INSTALL_BINDIR="Library\bin" ^
+      -DCMAKE_INSTALL_DATADIR="Library\share" ^
+      -DCMAKE_PREFIX_PATH="%LIBRARY_PREFIX%" ^
+      -DPYLIBEFP_CMAKECONFIG_INSTALL_DIR="Library\share\cmake\pylibefp" ^
+      -DLIBEFP_CMAKECONFIG_INSTALL_DIR="Library\share\cmake\libefp" ^
       -DCMAKE_C_FLAGS="/wd4018 /wd4101 /wd4996 /EHsc %CFLAGS%" ^
       -DCMAKE_CXX_FLAGS="/wd4018 /wd4101 /wd4996 /EHsc %CXXFLAGS%" ^
-      -DPYMOD_INSTALL_LIBDIR="/../../Lib/site-packages" ^
+      -DPYMOD_INSTALL_LIBDIR="\..\..\Lib\site-packages" ^
       -DPYTHON_EXECUTABLE="%PYTHON%" ^
       -DPython_EXECUTABLE="%PYTHON%" ^
       -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=ON ^
@@ -28,7 +26,6 @@ cmake -G"Ninja" ^
       -DBUILD_TESTING=OFF ^
       -DFRAGLIB_UNDERSCORE_L=OFF ^
       -DFRAGLIB_DEEP=OFF ^
-      -DCMAKE_POLICY_VERSION_MINIMUM=4.0 ^
       -DINSTALL_DEVEL_HEADERS=ON
 
       ::-DLAPACK_LIBRARIES="%PREFIX%/Library/lib/mkl_rt.lib"
