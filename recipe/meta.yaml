@@ -52,8 +52,8 @@ outputs:
       host:
         - libblas
         - liblapack
-      run_constrained:
-        - mkl <=2024.1                  # [win]        # 2024.2 gives wrong answers
+      # run_constrained:
+        # - mkl <=2024.1                  # [win]        # 2024.2 gives wrong answers but this is too restricting
     files:
       - include/efp.h                   # [unix]
       - include/libefp/*                # [unix]
@@ -123,6 +123,7 @@ outputs:
       requires:
         - numpy
         - pytest
+        - mkl 2024.1                                              # [win]
       files:
         - test_pylibefp.py
       imports:
