@@ -1,7 +1,7 @@
 {% set name = "libefp" %}
 {% set libefp_version = "1.5.0" %}
 {% set version = "0.6.2" %}
-{% set sha256 = "33a4f70efebcf66cfed7a51b0e97a8a47b98fc4d6c8b7a298cff87b4943e9697" %}
+{% set sha256 = "874fd1bb263e9a2cd83c420a4c4d3297af8b8afd2e3ea881f8f7cee2334fe19c" %}
 
 package:
   name: {{ name|lower }}-split
@@ -9,7 +9,9 @@ package:
 
 source:
   # url: https://github.com/loriab/pylibefp/archive/v{{ version }}.tar.gz
-  url: https://github.com/loriab/pylibefp/archive/76f8e52.tar.gz  # v0.6.2 + 6
+  # url: https://github.com/loriab/pylibefp/archive/76f8e52.tar.gz  # v0.6.2 + 6
+  url: https://github.com/loriab/pylibefp/archive/f6ea1a8.tar.gz  # v0.6.2 + 7
+
   sha256: {{ sha256 }}
   # note: above accesses (with checksum) a patch of the upstream project libefp
   # * upstream project is: https://github.com/libefp2/libefp/archive/15cd7ce.tar.gz  # v1.5.0 + 10 (docs and a cmake lapack patch)
