@@ -1,7 +1,7 @@
 {% set name = "libefp" %}
 {% set libefp_version = "1.5.0" %}
 {% set version = "0.6.2" %}
-{% set sha256 = "5c7426e9a6fa6c7f0695e431f13fe5dca97c6cd87266a9f222b866413d2b2041" %}
+{% set sha256 = "91f4d90c6a7484c2b0fb44f217b831af3e6131e063f18aa7a65b721afe9794e7" %}
 
 package:
   name: {{ name|lower }}-split
@@ -10,7 +10,7 @@ package:
 source:
   # url: https://github.com/loriab/pylibefp/archive/v{{ version }}.tar.gz
   # url: https://github.com/loriab/pylibefp/archive/76f8e52.tar.gz  # v0.6.2 + 6
-  url: https://github.com/loriab/pylibefp/archive/ec5efd2.tar.gz  # v0.6.2 + 7
+  url: https://github.com/loriab/pylibefp/archive/e31178c.tar.gz  # v0.6.2 + 7
 
   sha256: {{ sha256 }}
   # note: above accesses (with checksum) a patch of the upstream project libefp
@@ -38,6 +38,8 @@ requirements:
     - qcelemental
     - libblas
     - liblapack
+  # run_constrained:
+    # - mkl <=2024.1                  # [win]        # 2024.2 gives wrong answers but this is too restricting
 
 outputs:
   - name: libefp
@@ -123,6 +125,7 @@ outputs:
       requires:
         - numpy
         - pytest
+        - mkl 2024.1                                              # [win]
       files:
         - test_pylibefp.py
       imports:
