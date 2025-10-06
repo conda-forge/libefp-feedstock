@@ -121,7 +121,7 @@ outputs:
       requires:
         - numpy
         - pytest
-        - mkl                                                     # [x86_64]
+        - mkl 2024.1                                              # [win]
       files:
         - test_pylibefp.py
       imports:
