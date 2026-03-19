@@ -18,7 +18,7 @@ source:
   # * patched project is:  https://github.com/loriab/libefp/archive/14f8594.tar.gz  # v1.5.0 + 13 (above plus some cmake patches for windows)
 
 build:
-  number: 6
+  number: 7
   binary_relocation: true
 
 requirements:
@@ -114,7 +114,9 @@ outputs:
       run:
         - {{ pin_subpackage('libefp', exact=True) }}
         - python
-        - {{ pin_compatible('qcelemental', max_pin='x') }}
+        # - {{ pin_compatible('qcelemental', max_pin='x') }}
+        - qcelemental >=0.29.0,<0.70.0                 # [py < 314]
+        - qcelemental >=0.50.0rc3,<0.70.0              # [py >= 314]
     files:
       - lib/python{{ PY_VER }}/site-packages/pylibefp  # [unix]
       - Lib/site-packages/pylibefp                     # [win]
