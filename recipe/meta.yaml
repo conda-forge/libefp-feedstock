@@ -33,6 +33,7 @@ requirements:
     - ninja
   host:
     - python
+    - libpython                       # [unix and py>=315]
     - pybind11
     - pybind11-abi
     - qcelemental
