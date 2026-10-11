@@ -1,4 +1,7 @@
-
+set SITEP="/../../Lib/site-packages"
+IF "%PY_VER%"=="3.15" (
+  set SITEP="/../../lib/python/site-packages"
+)
 cmake %CMAKE_ARGS% -G"Ninja" ^
       -S%SRC_DIR% ^
       -Bbuild ^
@@ -13,7 +16,7 @@ cmake %CMAKE_ARGS% -G"Ninja" ^
       -DLIBEFP_CMAKECONFIG_INSTALL_DIR="Library/share/cmake/libefp" ^
       -DCMAKE_C_FLAGS="/wd4018 /wd4101 /wd4996 /EHsc %CFLAGS%" ^
       -DCMAKE_CXX_FLAGS="/wd4018 /wd4101 /wd4996 /EHsc %CXXFLAGS%" ^
-      -DPYMOD_INSTALL_LIBDIR="/../../Lib/site-packages" ^
+      -DPYMOD_INSTALL_LIBDIR=%SITEP% ^
       -DPYTHON_EXECUTABLE="%PYTHON%" ^
       -DPython_EXECUTABLE="%PYTHON%" ^
       -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=ON ^
