@@ -18,7 +18,7 @@ source:
   # * patched project is:  https://github.com/loriab/libefp/archive/14f8594.tar.gz  # v1.5.0 + 13 (above plus some cmake patches for windows)
 
 build:
-  number: 7
+  number: 8
   binary_relocation: true
 
 requirements:
@@ -33,6 +33,7 @@ requirements:
     - ninja
   host:
     - python
+    - libpython                       # [py>=315]
     - pybind11
     - pybind11-abi
     - qcelemental
@@ -108,6 +109,7 @@ outputs:
       host:
         - {{ pin_subpackage('libefp', exact=True) }}
         - python
+        - libpython                                    # [py >= 315]
         - pybind11
         - pybind11-abi
         - qcelemental
@@ -116,10 +118,11 @@ outputs:
         - python
         # - {{ pin_compatible('qcelemental', max_pin='x') }}
         - qcelemental >=0.29.0,<0.70.0                 # [py < 314]
-        - qcelemental >=0.50.0rc3,<0.70.0              # [py >= 314]
+        - qcelemental >=0.50.0,<0.70.0                 # [py >= 314]
     files:
       - lib/python{{ PY_VER }}/site-packages/pylibefp  # [unix]
-      - Lib/site-packages/pylibefp                     # [win]
+      - Lib/site-packages/pylibefp                     # [win and py<315]
+      - lib/python/site-packages/pylibefp              # [win and py>=315]
         # if later install cmake config files for Py module, these are the correct filters
         # - share/cmake/pylibefp/*                         # [unix]
         # - Library/share/cmake/pylibefp/*                 # [win]
